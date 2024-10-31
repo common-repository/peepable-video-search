@@ -1,0 +1,13 @@
+/* 
+    Created on : 24/06/2016, 2:34:47 PM
+    Author     : Alex French
+*/
+
+.peepablefooter{
+     float: left;
+}
+
+.peepable-search-box input, .peepable-search-results input {
+    line-height: normal;
+    height: 40px;
+}

@@ -1,0 +1,84 @@
+
+<hyPublishedDatetml>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="http://localhost:3000/css/main.css">
+  </head>
+  <body>
+  
+
+<div class="contentName">Currently Playing:  <span class='value'></span></div>
+<div class="contentTime">Time:  <span class='value'></span></div>
+<div class="contentStatus">Status:  <span class='value'></span></div>
+
+    <div class="peepable-search-box"></div>
+    <div class="peepable-search-results"></div>
+    <script src="http://localhost:3000/js/main.js"></script>
+    <!-- <script src="http://widget-test.peepable.com.s3.amazonaws.com/js/main.js?v=2015-07-10th"></script> -->
+    <script>
+      PeepableToolkit.initialise( {
+        client_id: 'widgetabc123',
+        //afl: '0df315cd032440148f1ba9781a4004a7', // The peepablewidget website ROD
+        //afl: 'cfc68cc069144c2e9cb67a56c0bec9e2', // The peepablewidget website ROD
+        afl: '', // The peepablewidget website ROD
+        FacebookAppId: 1587399091522963,
+        search_url_template: 'search.html?q={{search-criteria}}',
+        video_url_template: 'video.html?q={{peep-criteria}}',
+        continuteAtPeepEnd: true,
+        displayPublishedDate: true
+        //search_placeholder: 'test 2123',
+          //search_url_template: '/?q={{search-criteria}}',
+          //search_query_string_name: 'q',
+          //searchCriteria: '' // Search on this
+      } );
+    </script>
+    <script>
+    
+    
+    
+function peepableOnplay (e) {
+      console.debug( "peepableOnplay the video player with the ID : ", e.detail.videoID );
+      document.querySelector('.contentName .value').innerHTML = e.detail.videoID;
+      document.querySelector('.contentStatus .value').innerHTML = "Playing";
+}
+function peepableEnded (e) {
+    console.debug( "peepableEnded the video player with the ID : ", e.detail.videoID );
+    document.querySelector('.contentStatus .value').innerHTML = "Finished";
+}
+function peepablePause (e) {
+    console.debug( "peepablePause the video player with the ID : ", e.detail.videoID );
+    document.querySelector('.contentStatus .value').innerHTML = "Paused";
+}
+function peepableReady (e) {
+    console.debug( "peepableReady the video player with the ID : ", e.detail.videoID );
+    document.querySelector('.contentStatus .value').innerHTML = "Ready";
+}
+function peepableDispose (e) {
+    console.debug( "peepableDispose the video player with the ID : ", e.detail.videoID );
+    document.querySelector('.contentStatus .value').innerHTML = "";
+    document.querySelector('.contentName .value').innerHTML = "";
+    document.querySelector('.contentTime .value').innerHTML = "";
+}
+function peepableTimeUpdate (e) {
+     document.querySelector('.contentTime .value').innerHTML = e.detail.currentTime;
+}
+  
+  
+PeepableToolkit.on('peepableOnPlay', peepableOnplay);
+PeepableToolkit.on('peepableTimeUpdate', peepableTimeUpdate);
+PeepableToolkit.on('peepableEnded', peepableEnded);
+PeepableToolkit.on('peepablePause', peepablePause);
+PeepableToolkit.on('peepableDispose', peepableDispose);
+
+//document.addEventListener('peepableOnPlay', peepableOnplay, false);
+//document.addEventListener('peepableTimeUpdate', peepableTimeUpdate, false);
+//document.addEventListener('peepableEnded', peepableEnded, false);
+//document.addEventListener('peepablePause', peepablePause, false);
+	
+    </script>
+
+  </body>
+</html>
